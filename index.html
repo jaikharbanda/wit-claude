@@ -107,6 +107,11 @@
   .skillcard .meta { display:flex; align-items:center; gap:8px; }
   .pill { display:inline-block; background:var(--purple); color:#fff; font-size:11px; font-weight:800;
     padding:3px 10px; border-radius:999px; }
+  .promptbox { background:var(--dark); color:#e8e4ef; border-radius:10px; padding:14px 16px; font-size:12.5px;
+    line-height:1.5; white-space:pre-wrap; word-break:break-word; margin:10px 0 0;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; max-height:220px; overflow-y:auto; }
+  .copybtn { border:none; cursor:pointer; font-size:14px; padding:9px 18px; margin-top:10px;
+    font-family:inherit; }
   footer { text-align:center; color:var(--grey); font-size:13px; margin-top:28px; }
   footer a { color:var(--purple); text-decoration:none; font-weight:600; }
   .note { font-size:12.5px; color:var(--grey); margin-top:10px; }
@@ -122,7 +127,7 @@
   </div>
   <h1>Claude AI Working Group</h1>
   <p>Saturdays &middot; 2:00&ndash;4:30pm &middot; UCL Chadwick Building, London</p>
-  <div class="badge">Week 1 &middot; Sat 20 June</div>
+  <div class="badge">Week 3 &middot; Sat 4 July</div>
   <div class="scanrow">
     <img src="data:image/png;base64,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" alt="QR code to open this page on your phone">
     <div class="st">Viewing this on the screen?<br><strong>Scan to open it on your phone.</strong></div>
@@ -135,24 +140,67 @@
     <a class="qcard" href="https://tsociety.typeform.com/to/PlQj2Pqd#source=wit_claude_working_group" target="_blank" rel="noopener">
       <div class="ico">&#127891;</div><div class="t">Our AI courses</div><div class="d">Register interest</div>
     </a>
-    <a class="qcard" href="data:application/octet-stream;base64,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" download="anti-ai-writing-style.skill">
-      <div class="ico">&#9889;</div><div class="t">Free skill</div><div class="d">Anti-AI writing</div>
+    <a class="qcard" href="#skills">
+      <div class="ico">&#9889;</div><div class="t">Free skills</div><div class="d">2 downloads so far</div>
     </a>
   </div>
 
   <section>
-    <h2>This Saturday: <span class="em">Your First Hour with Claude</span></h2>
-    <p class="sub">2 hours of the session &middot; watch, discuss, and try together. No laptop needed.</p>
+    <h2>This Saturday: <span class="em">Set Up Claude Cowork Like a Pro</span></h2>
+    <p class="sub">2:00&ndash;4:30pm &middot; hands-on session. Bring a laptop: you'll build your own setup in the room.</p>
     <strong>What we'll cover</strong>
     <ul>
-      <li>What Claude is, and how it differs from ChatGPT</li>
-      <li>How to prompt: just tell Claude to ask <em>you</em> questions first</li>
-      <li>What Claude Skills are, and why they save you time</li>
-      <li>Browser vs Desktop (Cowork) vs Claude Code, and which to use when</li>
-      <li>Connecting Claude to your apps</li>
-      <li>Where to go next to keep building your AI skills</li>
+      <li>Claude Cowork: what it is, and the folder setup that makes it work (ABOUT ME / OUTPUTS / TEMPLATES)</li>
+      <li>Your about-me file: Claude interviews <em>you</em>, then writes it</li>
+      <li>Your anti-AI writing style file (Week 1's skill, now doing real work)</li>
+      <li>Your my-company file and global instructions: the glue that ties it together</li>
+      <li>Templates: save your best work once, reuse the structure forever</li>
+      <li>How to stop burning your credits: 5 habits that save most of your budget</li>
     </ul>
-    <p class="note"><strong>Three things to remember:</strong> let Claude interview you before it answers &middot; Skills save repeat work &middot; pick the right Claude for the job.</p>
+    <p class="note"><strong>On the free plan?</strong> You can still build everything today. Same files, same prompts, using browser Claude with a Project and custom instructions. We'll show both side by side.</p>
+    <p class="note"><strong>Three things to remember:</strong> Claude reads your ABOUT ME folder every session &middot; small files beat big ones &middot; restart the conversation instead of saying "no, I meant&hellip;".</p>
+  </section>
+
+  <section id="prompts">
+    <h2>This Saturday's <span class="em">prompts</span></h2>
+    <p class="sub">Everything we type in the session, ready to copy. The full interview prompt is in this week's free skill below.</p>
+
+    <div class="skillcard">
+      <div class="meta"><span class="pill">Paste 1</span> <strong>Global instructions</strong> <span style="font-size:12px;color:var(--grey);">&middot; Settings &rarr; Cowork &rarr; Edit Global Instructions</span></div>
+      <pre class="promptbox" id="p1">I usually start my Cowork session by pointing you to my Cowork folder.
+
+Before any and every single task, you must read every file in ABOUT ME/:
+
+- about-me: it's me, who I am, what I love and hate
+- anti-ai-writing-style: I hate how Claude writes, unless you write and then audit it against my anti-ai-writing-style file.
+- my-company: where I work, my role.
+
+Never read the folders OUTPUTS/ or TEMPLATES/ unless I specifically point you to a file.
+
+Save all deliverables in OUTPUTS/ under a subfolder named after the project.
+
+If the brief is unclear, use AskUserQuestion. Don't fill gaps with filler. Don't over-explain. Deliver the work.</pre>
+      <button class="btn copybtn" data-target="p1">Copy</button>
+    </div>
+
+    <div class="skillcard">
+      <div class="meta"><span class="pill">Paste 2</span> <strong>Trim a bloated about-me file</strong></div>
+      <pre class="promptbox" id="p2">This is my about-me file and I need to save tokens.
+Ask me questions on how to trim effectively until we have the perfect document.</pre>
+      <button class="btn copybtn" data-target="p2">Copy</button>
+    </div>
+
+    <div class="skillcard">
+      <div class="meta"><span class="pill">Paste 3</span> <strong>Save your best work as a template</strong></div>
+      <pre class="promptbox" id="p3">Save this as a template in TEMPLATES/. Strip the content, keep the skeleton: sections, order, format, length.</pre>
+      <button class="btn copybtn" data-target="p3">Copy</button>
+    </div>
+
+    <div class="skillcard">
+      <div class="meta"><span class="pill">Paste 4</span> <strong>Carry a long session into a fresh one</strong></div>
+      <pre class="promptbox" id="p4">Summarize everything we've done and decided in this session in a compact brief I can paste into a new session. Include the current state of the work, open questions, and next steps.</pre>
+      <button class="btn copybtn" data-target="p4">Copy</button>
+    </div>
   </section>
 
   <section>
@@ -230,9 +278,18 @@
     </div>
   </section>
 
-  <section>
+  <section id="skills">
     <h2>Free skills: <span class="em">a new one each Saturday</span></h2>
     <p class="sub">Downloadable skills you can start using right away. Keep this page handy. We add one each week.</p>
+    <div class="skillcard" style="border-color:var(--purple); box-shadow:0 0 0 2px rgba(103,58,255,.18);">
+      <div class="meta"><span class="pill">Week 3</span> <strong>About-me interview</strong></div>
+      <p style="margin:8px 0 0; font-size:14px; color:var(--grey);">Claude interviews you (20 sharp questions), then writes the two profile files your Cowork folder needs: about-me.md and my-company.md. The heart of this Saturday's session.</p>
+      <p style="margin:8px 0 0; font-size:13px; color:var(--grey);"><strong>Desktop/Cowork:</strong> download the .skill and click "Save skill". <strong>Browser/ChatGPT/Gemini:</strong> download the .md and paste it into a chat to run the interview.</p>
+      <div class="btn-row">
+        <a class="btn" href="data:application/octet-stream;base64,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" download="about-me-interview.skill">Download .skill</a>
+        <a class="btn ghost" href="data:text/markdown;base64,IyBBYm91dC1tZSBpbnRlcnZpZXcKCkEgcmV1c2FibGUgc2tpbGwgdGhhdCBnZXRzIENsYXVkZSB0byBpbnRlcnZpZXcgeW91LCB0aGVuIHdyaXRlIHRoZSB0d28gcHJvZmlsZSBmaWxlcyB5b3VyIENsYXVkZSBDb3dvcmsgZm9sZGVyIG5lZWRzOiBhYm91dC1tZS5tZCBhbmQgbXktY29tcGFueS5tZC4gT25jZSB0aG9zZSBmaWxlcyBleGlzdCwgQ2xhdWRlIHN0YXJ0cyBldmVyeSB0YXNrIGFscmVhZHkga25vd2luZyB3aG8geW91IGFyZSwgaG93IHlvdSB3b3JrLCBhbmQgd2hhdCB5b3UncmUgYWltaW5nIGF0LgoKIyMgSG93IHRvIHVzZSBpdCAocGljayB3aGljaGV2ZXIgZml0cyB5b3UpCgoxLiAqKkNsYXVkZSBkZXNrdG9wIC8gQ293b3JrOioqIHNhdmUgdGhpcyBza2lsbCwgdGhlbiBzdGFydCBhIHRhc2sgd2l0aCAicnVuIHRoZSBhYm91dC1tZSBpbnRlcnZpZXciLiBDbGF1ZGUgaW50ZXJ2aWV3cyB5b3UgYW5kIHNhdmVzIGJvdGggZmlsZXMgaW50byB5b3VyIEFCT1VUIE1FIGZvbGRlci4KMi4gKipDbGF1ZGUgYnJvd3NlciAoZnJlZSBwbGFuKToqKiBwYXN0ZSBldmVyeXRoaW5nIGJlbG93IHRoZSBsaW5lIGludG8gYSBjaGF0IGFuZCBhbnN3ZXIgdGhlIHF1ZXN0aW9ucy4gU2F2ZSB0aGUgdHdvIGZpbGVzIENsYXVkZSBwcm9kdWNlcyBpbnRvIGEgUHJvamVjdCAoUHJvamVjdCBpbnN0cnVjdGlvbnMgb3IgcHJvamVjdCBmaWxlcykuIFNhbWUgcmVzdWx0LCBubyBkZXNrdG9wIGFwcCBuZWVkZWQuCjMuICoqUmVmcmVzaGluZyBsYXRlcjoqKiByZXJ1biB0aGUgaW50ZXJ2aWV3IGV2ZXJ5IGZldyBtb250aHMsIG9yIGp1c3Qgc2F5ICJ1cGRhdGUgbXkgYWJvdXQtbWUubWQsIGhlcmUncyB3aGF0IGNoYW5nZWQuIgoKLS0tCgojIFRIRSBJTlRFUlZJRVcKCllvdSBhcmUgYnVpbGRpbmcgdHdvIGZpbGVzIGZvciBteSBDbGF1ZGUgd29ya3NwYWNlOiBhYm91dC1tZS5tZCBhbmQgbXktY29tcGFueS5tZC4gVGhleSB3aWxsIGJlIHJlYWQgYXQgdGhlIHN0YXJ0IG9mIGV2ZXJ5IHNlc3Npb24sIHNvIHRoZXkgbXVzdCBiZSBjb25jaXNlIGFuZCBoaWdoLXNpZ25hbC4KCkludGVydmlldyBtZSBmaXJzdC4gVXNlIEFza1VzZXJRdWVzdGlvbiB3aGVyZSBhdmFpbGFibGUsIG9uZSBxdWVzdGlvbiBhdCBhIHRpbWUuIElmIEkgZ2l2ZSBhIHZhZ3VlIGFuc3dlciwgcHVzaCBiYWNrIGFuZCBhc2sgZm9yIGEgc3BlY2lmaWMgZXhhbXBsZS4gRm9sbG93IGludGVyZXN0aW5nIHRocmVhZHMgYmVmb3JlIG1vdmluZyBvbi4gTGV0IG1lIHBpY2sgIk90aGVyIiB0byBkaWN0YXRlIGxvbmdlciBhbnN3ZXJzLgoKIyMgUGFydCAxOiBhYm91dC1tZS5tZCAoMTUtMjAgcXVlc3Rpb25zKQoKV0hPIEkgQU0gKDMgcXVlc3Rpb25zKQotIFdoYXQgZG8gSSBkbz8gUm9sZSwgY29tcGFueSwgaW5kdXN0cnkuCi0gV2hvIGRvIEkgd29yayB3aXRoIG9yIGZvcj8gQ2xpZW50cywgdGVhbSwgc3Rha2Vob2xkZXJzLCBhdWRpZW5jZS4KLSBXaGF0IGRvZXMgYSBnb29kIHdlZWsgb2Ygd29yayBsb29rIGxpa2UgZm9yIG1lPwoKSE9XIEkgV09SSyAoNCBxdWVzdGlvbnMpCi0gV2hhdCB0b29scyBkbyBJIHVzZSBldmVyeSBkYXkgYW5kIGhvdz8KLSBXYWxrIG1lIHRocm91Z2ggaG93IEkgc3RhcnQgYSB0eXBpY2FsIHRhc2sgZnJvbSB6ZXJvIHRvIGRvbmUuCi0gV2hhdCBkb2VzIG15IHJldmlldyBvciBRQSBwcm9jZXNzIGxvb2sgbGlrZT8KLSBXaGVuIEkgaGFuZCBzb21ldGhpbmcgb2ZmLCB3aGF0IGRvZXMgImRvbmUiIGxvb2sgbGlrZT8KCldIQVQgR09PRCBMT09LUyBMSUtFICg0IHF1ZXN0aW9ucykKLSBEZXNjcmliZSB0aGUgYmVzdCBvdXRwdXQgSSd2ZSBwcm9kdWNlZCByZWNlbnRseS4gV2hhdCBtYWRlIGl0IGdvb2Q/Ci0gV2hhdCBzZXBhcmF0ZXMgZ3JlYXQgd29yayBmcm9tIGF2ZXJhZ2Ugd29yayBpbiBteSBmaWVsZD8KLSBXaGVuIEkgc2VlIHNvbWVvbmUgZWxzZSdzIHdvcmsgYW5kIHRoaW5rICJ0aGlzIGlzIGdvb2QsIiB3aGF0IGFtIEkgcmVhY3RpbmcgdG8/Ci0gSWYgc29tZW9uZSBqdWRnZWQgbXkgd29yaywgd2hhdCBzaG91bGQgdGhleSBsb29rIGZvcj8KCldIQVQgSSBIQVRFICg0IHF1ZXN0aW9ucykKLSBBbiBleGFtcGxlIG9mIGJhZCB3b3JrIGluIG15IGZpZWxkLCBhbmQgd2hhdCBzcGVjaWZpY2FsbHkgbWFrZXMgaXQgYmFkLgotIFBhdHRlcm5zLCBzaG9ydGN1dHMgb3IgaGFiaXRzIGluIG15IGluZHVzdHJ5IHRoYXQgbWFrZSBtZSBjcmluZ2UuCi0gV2hlbiBBSSB3cml0ZXMgc29tZXRoaW5nIGZvciBtZSBhbmQgaXQncyB3cm9uZywgd2hhdCdzIHVzdWFsbHkgb2ZmPyBUb25lLCBzdHJ1Y3R1cmUsIGRldGFpbCBsZXZlbCwgYXNzdW1wdGlvbnM/CgpNWSBSVUxFUyAoMyBxdWVzdGlvbnMpCi0gV2hhdCBkbyBJIG5ldmVyIGRvIGluIG15IHdvcms/IEhhcmQgbGluZXMuCi0gVGhlIDItMyBub24tbmVnb3RpYWJsZXMgZXZlcnkgcGllY2Ugb2YgbXkgd29yayBtdXN0IGhhdmUuCgpNWSBPUElOSU9OUyAoMyBxdWVzdGlvbnMpCi0gV2hhdCBkbyBJIGJlbGlldmUgYWJvdXQgbXkgZmllbGQgdGhhdCBwZWVycyB3b3VsZCBwdXNoIGJhY2sgb24/Ci0gV2hhdCdzIG92ZXJyYXRlZD8gV2hhdCdzIHVuZGVycmF0ZWQ/CgojIyBQYXJ0IDI6IG15LWNvbXBhbnkubWQgKDYtOCBxdWVzdGlvbnMpCgpObyBvdmVybGFwIHdpdGggUGFydCAxLiBUaGlzIGZpbGUgaXMgT05MWSBnb2Fscywgc3RyYXRlZ3kgYW5kIGRlY2lzaW9ucy4KCkdPQUxTICgzLTQgcXVlc3Rpb25zKQotIFRvcCAyLTMgZ29hbHMgZm9yIHRoaXMgeWVhciwgd2l0aCBudW1iZXJzIG9yIG1pbGVzdG9uZXMuCi0gV2hpY2ggcGxhdGZvcm1zLCBjaGFubmVscyBvciBtYXJrZXRzIG1hdHRlciBtb3N0IHJpZ2h0IG5vdz8KLSBUaGUgb25lIG1ldHJpYyB0aGF0IHdvdWxkIG1ha2UgdGhpcyB5ZWFyIGEgc3VjY2Vzcy4KCkRFQ0lTSU9OUyAoMy00IHF1ZXN0aW9ucykKLSBXaGF0IGFtIEkgYWN0aXZlbHkgc2F5aW5nIG5vIHRvIHJpZ2h0IG5vdz8KLSBXaGF0IGRpZCBJIHJlY2VudGx5IHN0b3AgZG9pbmcsIGFuZCB3aHk/Ci0gV2hlcmUgaXMgbXkgdGltZSBhbmQgZW5lcmd5IGdvaW5nIHRoaXMgcXVhcnRlcj8KLSBBbnl0aGluZyBJJ20gYmV0dGluZyBvbiB0aGF0IG1vc3QgcGVvcGxlIGluIG15IGZpZWxkIGFyZW4ndD8KCiMjIE91dHB1dCBmb3JtYXQKCkRvIE5PVCBzYXZlIHJhdyBRJkEgdHJhbnNjcmlwdHMuIEV4dHJhY3QgdGhlIHBhdHRlcm5zIGFuZCB3cml0ZSBjb25kZW5zZWQgcHJvc2UgYW5kIGJ1bGxldHMuCgoqKmFib3V0LW1lLm1kKiogKHRhcmdldDogdW5kZXIgMiwwMDAgdG9rZW5zKToKCiMgQUJPVVQgTUU6IFtOYW1lXQojIyBXaG8gSSBhbQojIyBIb3cgSSB3b3JrCiMjIFdoYXQgZ29vZCBsb29rcyBsaWtlCiMjIFdoYXQgSSBoYXRlCiMjIE15IHJ1bGVzIChudW1iZXJlZCBsaXN0KQojIyBJbnN0cnVjdGlvbnMgZm9yIENsYXVkZSAoMTAgbnVtYmVyZWQgcnVsZXM6IHdoYXQgdG8gRE8gYW5kIE5PVCBETykKCioqbXktY29tcGFueS5tZCoqICh0YXJnZXQ6IHVuZGVyIDEsMDAwIHRva2Vucyk6CgojIE1ZIENPTVBBTlkKIyMgR29hbHMgKGJ1bGxldHMsIHNwZWNpZmljIHRhcmdldHMpCiMjIEZvY3VzIHJpZ2h0IG5vdyAoMi0zIGJ1bGxldHMgbWF4KQojIyBTYXlpbmcgbm8gdG8gKGJ1bGxldHMpCgpTYXZlIGJvdGggZmlsZXMgaW4gbXkgQUJPVVQgTUUvIGZvbGRlciAoQ293b3JrKSBvciBvdXRwdXQgdGhlbSBhcyB0d28gY2xlYXJseSBzZXBhcmF0ZWQgbWFya2Rvd24gYmxvY2tzIEkgY2FuIGNvcHkgKGJyb3dzZXIpLiBFdmVyeSBzZW50ZW5jZSBzaG91bGQgY2Fycnkgc2lnbmFsOiBpZiBpdCBjYW4gYmUgY3V0IHdpdGhvdXQgbG9zaW5nIGluZm9ybWF0aW9uLCBjdXQgaXQuCgpDcmVkaXQ6IGludGVydmlldyBzdHJ1Y3R1cmUgYWRhcHRlZCBmcm9tIFJ1YmVuIEhhc3NpZCdzIENsYXVkZSBDb3dvcmsgZ3VpZGUgKHJ1YmVuLnN1YnN0YWNrLmNvbSkuCg==" download="about-me-interview.md">Download .md</a>
+      </div>
+    </div>
     <div class="skillcard">
       <div class="meta"><span class="pill">Week 1</span> <strong>Anti-AI writing style</strong></div>
       <p style="margin:8px 0 0; font-size:14px; color:var(--grey);">Makes Claude (or any AI) write like a human: it strips banned words, kills the "it's not X, it's Y" tell, and removes the AI giveaways.</p>
@@ -248,25 +305,25 @@
     <h2>The 4-week series</h2>
     <p class="sub">One focused session each Saturday, 2:00&ndash;4:30pm at UCL Chadwick Building.</p>
     <div class="weeks">
-      <div class="week now"><span class="tag">This week</span>
+      <div class="week">
         <div class="dt">Sat 20 Jun</div><div class="wt">Your First Hour with Claude</div></div>
       <div class="week">
-        <div class="dt">Sat 27 Jun</div><div class="wt">Building Your Claude Workspace</div></div>
-      <div class="week">
-        <div class="dt">Sat 4 Jul</div><div class="wt">Making Claude Sound Like You</div></div>
+        <div class="dt">Sat 27 Jun</div><div class="wt">Building Your Claude Workspace <span style="font-weight:500;color:var(--grey);font-size:13px;">(folded into Week 3)</span></div></div>
+      <div class="week now"><span class="tag">This week</span>
+        <div class="dt">Sat 4 Jul</div><div class="wt">Set Up Claude Cowork Like a Pro</div></div>
       <div class="week">
         <div class="dt">Sat 11 Jul</div><div class="wt">Connect, Build &amp; Stay Safe</div></div>
     </div>
     <div class="btn-row">
-      <a class="btn cream" style="border:1px solid var(--line);" href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSDQpWRVJTSU9OOjIuMA0KUFJPRElEOi0vL1dJVCBVSy8vQ2xhdWRlIEFJIFdvcmtpbmcgR3JvdXAvL0VODQpDQUxTQ0FMRTpHUkVHT1JJQU4NCk1FVEhPRDpQVUJMSVNIDQpCRUdJTjpWRVZFTlQNClVJRDp3aXQtY2xhdWRlLXdrMUBqYWlraGFyYmFuZGEuZ2l0aHViLmlvDQpEVFNUQU1QOjIwMjYwNjE5VDAwMDAwMFoNCkRUU1RBUlQ6MjAyNjA2MjBUMTMwMDAwWg0KRFRFTkQ6MjAyNjA2MjBUMTUzMDAwWg0KU1VNTUFSWTpXSVQgVUsgLSBDbGF1ZGUgQUkgV29ya2luZyBHcm91cCAtIFdlZWsgMTogWW91ciBGaXJzdCBIb3VyIHdpdGggQ2xhdWRlDQpMT0NBVElPTjpVQ0wgQ2hhZHdpY2sgQnVpbGRpbmcsIExvbmRvbg0KREVTQ1JJUFRJT046V29tZW4gaW4gVGVjaCBVSyBDbGF1ZGUgQUkgV29ya2luZyBHcm91cC4gSHViOiBodHRwczovL2phaWtoYXJiYW5kYS5naXRodWIuaW8vd2l0LWNsYXVkZS8NCkVORDpWRVZFTlQNCkJFR0lOOlZFVkVOVA0KVUlEOndpdC1jbGF1ZGUtd2syQGphaWtoYXJiYW5kYS5naXRodWIuaW8NCkRUU1RBTVA6MjAyNjA2MTlUMDAwMDAwWg0KRFRTVEFSVDoyMDI2MDYyN1QxMzAwMDBaDQpEVEVORDoyMDI2MDYyN1QxNTMwMDBaDQpTVU1NQVJZOldJVCBVSyAtIENsYXVkZSBBSSBXb3JraW5nIEdyb3VwIC0gV2VlayAyOiBCdWlsZGluZyBZb3VyIENsYXVkZSBXb3Jrc3BhY2UNCkxPQ0FUSU9OOlVDTCBDaGFkd2ljayBCdWlsZGluZywgTG9uZG9uDQpERVNDUklQVElPTjpXb21lbiBpbiBUZWNoIFVLIENsYXVkZSBBSSBXb3JraW5nIEdyb3VwLiBIdWI6IGh0dHBzOi8vamFpa2hhcmJhbmRhLmdpdGh1Yi5pby93aXQtY2xhdWRlLw0KRU5EOlZFVkVOVA0KQkVHSU46VkVWRU5UDQpVSUQ6d2l0LWNsYXVkZS13azNAamFpa2hhcmJhbmRhLmdpdGh1Yi5pbw0KRFRTVEFNUDoyMDI2MDYxOVQwMDAwMDBaDQpEVFNUQVJUOjIwMjYwNzA0VDEzMDAwMFoNCkRURU5EOjIwMjYwNzA0VDE1MzAwMFoNClNVTU1BUlk6V0lUIFVLIC0gQ2xhdWRlIEFJIFdvcmtpbmcgR3JvdXAgLSBXZWVrIDM6IE1ha2luZyBDbGF1ZGUgU291bmQgTGlrZSBZb3UNCkxPQ0FUSU9OOlVDTCBDaGFkd2ljayBCdWlsZGluZywgTG9uZG9uDQpERVNDUklQVElPTjpXb21lbiBpbiBUZWNoIFVLIENsYXVkZSBBSSBXb3JraW5nIEdyb3VwLiBIdWI6IGh0dHBzOi8vamFpa2hhcmJhbmRhLmdpdGh1Yi5pby93aXQtY2xhdWRlLw0KRU5EOlZFVkVOVA0KQkVHSU46VkVWRU5UDQpVSUQ6d2l0LWNsYXVkZS13azRAamFpa2hhcmJhbmRhLmdpdGh1Yi5pbw0KRFRTVEFNUDoyMDI2MDYxOVQwMDAwMDBaDQpEVFNUQVJUOjIwMjYwNzExVDEzMDAwMFoNCkRURU5EOjIwMjYwNzExVDE1MzAwMFoNClNVTU1BUlk6V0lUIFVLIC0gQ2xhdWRlIEFJIFdvcmtpbmcgR3JvdXAgLSBXZWVrIDQ6IENvbm5lY3QsIEJ1aWxkICYgU3RheSBTYWZlDQpMT0NBVElPTjpVQ0wgQ2hhZHdpY2sgQnVpbGRpbmcsIExvbmRvbg0KREVTQ1JJUFRJT046V29tZW4gaW4gVGVjaCBVSyBDbGF1ZGUgQUkgV29ya2luZyBHcm91cC4gSHViOiBodHRwczovL2phaWtoYXJiYW5kYS5naXRodWIuaW8vd2l0LWNsYXVkZS8NCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVI=" download="wit-claude-working-group.ics">&#128197; Add all sessions to your calendar</a>
+      <a class="btn cream" style="border:1px solid var(--line);" href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSDQpWRVJTSU9OOjIuMA0KUFJPRElEOi0vL1dJVCBVSy8vQ2xhdWRlIEFJIFdvcmtpbmcgR3JvdXAvL0VODQpDQUxTQ0FMRTpHUkVHT1JJQU4NCk1FVEhPRDpQVUJMSVNIDQpCRUdJTjpWRVZFTlQNClVJRDp3aXQtY2xhdWRlLXdrMUBqYWlraGFyYmFuZGEuZ2l0aHViLmlvDQpEVFNUQU1QOjIwMjYwNjE5VDAwMDAwMFoNCkRUU1RBUlQ6MjAyNjA2MjBUMTMwMDAwWg0KRFRFTkQ6MjAyNjA2MjBUMTUzMDAwWg0KU1VNTUFSWTpXSVQgVUsgLSBDbGF1ZGUgQUkgV29ya2luZyBHcm91cCAtIFdlZWsgMTogWW91ciBGaXJzdCBIb3VyIHdpdGggQ2xhdWRlDQpMT0NBVElPTjpVQ0wgQ2hhZHdpY2sgQnVpbGRpbmcsIExvbmRvbg0KREVTQ1JJUFRJT046V29tZW4gaW4gVGVjaCBVSyBDbGF1ZGUgQUkgV29ya2luZyBHcm91cC4gSHViOiBodHRwczovL2phaWtoYXJiYW5kYS5naXRodWIuaW8vd2l0LWNsYXVkZS8NCkVORDpWRVZFTlQNCkJFR0lOOlZFVkVOVA0KVUlEOndpdC1jbGF1ZGUtd2syQGphaWtoYXJiYW5kYS5naXRodWIuaW8NCkRUU1RBTVA6MjAyNjA2MTlUMDAwMDAwWg0KRFRTVEFSVDoyMDI2MDYyN1QxMzAwMDBaDQpEVEVORDoyMDI2MDYyN1QxNTMwMDBaDQpTVU1NQVJZOldJVCBVSyAtIENsYXVkZSBBSSBXb3JraW5nIEdyb3VwIC0gV2VlayAyOiBCdWlsZGluZyBZb3VyIENsYXVkZSBXb3Jrc3BhY2UNCkxPQ0FUSU9OOlVDTCBDaGFkd2ljayBCdWlsZGluZywgTG9uZG9uDQpERVNDUklQVElPTjpXb21lbiBpbiBUZWNoIFVLIENsYXVkZSBBSSBXb3JraW5nIEdyb3VwLiBIdWI6IGh0dHBzOi8vamFpa2hhcmJhbmRhLmdpdGh1Yi5pby93aXQtY2xhdWRlLw0KRU5EOlZFVkVOVA0KQkVHSU46VkVWRU5UDQpVSUQ6d2l0LWNsYXVkZS13azNAamFpa2hhcmJhbmRhLmdpdGh1Yi5pbw0KRFRTVEFNUDoyMDI2MDYxOVQwMDAwMDBaDQpEVFNUQVJUOjIwMjYwNzA0VDEzMDAwMFoNCkRURU5EOjIwMjYwNzA0VDE1MzAwMFoNClNVTU1BUlk6V0lUIFVLIC0gQ2xhdWRlIEFJIFdvcmtpbmcgR3JvdXAgLSBXZWVrIDM6IFNldCBVcCBDbGF1ZGUgQ293b3JrIExpa2UgYSBQcm8NCkxPQ0FUSU9OOlVDTCBDaGFkd2ljayBCdWlsZGluZywgTG9uZG9uDQpERVNDUklQVElPTjpXb21lbiBpbiBUZWNoIFVLIENsYXVkZSBBSSBXb3JraW5nIEdyb3VwLiBIdWI6IGh0dHBzOi8vamFpa2hhcmJhbmRhLmdpdGh1Yi5pby93aXQtY2xhdWRlLw0KRU5EOlZFVkVOVA0KQkVHSU46VkVWRU5UDQpVSUQ6d2l0LWNsYXVkZS13azRAamFpa2hhcmJhbmRhLmdpdGh1Yi5pbw0KRFRTVEFNUDoyMDI2MDYxOVQwMDAwMDBaDQpEVFNUQVJUOjIwMjYwNzExVDEzMDAwMFoNCkRURU5EOjIwMjYwNzExVDE1MzAwMFoNClNVTU1BUlk6V0lUIFVLIC0gQ2xhdWRlIEFJIFdvcmtpbmcgR3JvdXAgLSBXZWVrIDQ6IENvbm5lY3QsIEJ1aWxkICYgU3RheSBTYWZlDQpMT0NBVElPTjpVQ0wgQ2hhZHdpY2sgQnVpbGRpbmcsIExvbmRvbg0KREVTQ1JJUFRJT046V29tZW4gaW4gVGVjaCBVSyBDbGF1ZGUgQUkgV29ya2luZyBHcm91cC4gSHViOiBodHRwczovL2phaWtoYXJiYW5kYS5naXRodWIuaW8vd2l0LWNsYXVkZS8NCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVI=" download="wit-claude-working-group.ics">&#128197; Add all sessions to your calendar</a>
     </div>
     <p class="note">Official Luma RSVP links to follow. Add the dates now so they're in your diary.</p>
   </section>
 
   <section>
     <h2>What's next</h2>
-    <p class="sub">Next session: <strong>Saturday 27 June</strong> (Building Your Claude Workspace). Same time, UCL Chadwick Building.</p>
-    <p class="note">Come back with one thing you tried this week.</p>
+    <p class="sub">Final session: <strong>Saturday 11 July</strong> (Connect, Build &amp; Stay Safe). Same time, UCL Chadwick Building.</p>
+    <p class="note">This week's homework: run one real task through your new setup, and bring the result to show next Saturday.</p>
   </section>
 
   <footer>
@@ -274,5 +331,22 @@
   </footer>
 
 </div>
+<script>
+  document.querySelectorAll('.copybtn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var text = document.getElementById(btn.dataset.target).innerText;
+      function done(){ btn.textContent = 'Copied!'; setTimeout(function(){ btn.textContent = 'Copy'; }, 1800); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function(){ fallback(); });
+      } else { fallback(); }
+      function fallback(){
+        var ta = document.createElement('textarea'); ta.value = text;
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); } catch(e){}
+        document.body.removeChild(ta);
+      }
+    });
+  });
+</script>
 </body>
 </html>
