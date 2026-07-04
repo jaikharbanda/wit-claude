@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The three files: a step-by-step guide · WIT UK Claude Working Group</title>
+<meta name="description" content="What to do with about-me.md, anti-ai-writing-style.md and my-company.md: create, use, test and maintain each one.">
+<link rel="icon" type="image/png" href="https://jaikharbanda.github.io/wit-claude/favicon.png">
+<style>
+  @font-face { font-family:'Noi Grotesk'; src:url('https://jaikharbanda.github.io/wit-claude/NoiGrotesk-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
+  @font-face { font-family:'Noi Grotesk'; src:url('https://jaikharbanda.github.io/wit-claude/NoiGrotesk-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
+  @font-face { font-family:'Noi Grotesk'; src:url('https://jaikharbanda.github.io/wit-claude/NoiGrotesk-Semibold.woff2') format('woff2'); font-weight:600 800; font-display:swap; }
+  :root {
+    --dark:#25212C; --cream:#F5F0D6; --almost:#FFFEF5; --mint:#DEEDE7;
+    --purple:#673AFF; --lpurple:#808CF4; --plum:#493354; --orange:#E9513C;
+    --grey:#615a68; --line:#e7e0cf; --lined:#3a3543;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--cream); color:var(--dark);
+    font-family:'Noi Grotesk',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:780px; margin:0 auto; padding:0 18px 64px; }
+  header.hero { background:var(--dark); color:var(--almost); padding:42px 18px 36px; text-align:center; border-bottom:5px solid var(--purple); }
+  header.hero .cobrand { display:flex; align-items:center; justify-content:center; gap:24px; margin-bottom:14px; flex-wrap:wrap; }
+  header.hero .cobrand img { width:auto; }
+  header.hero .witlogo { height:56px; }
+  header.hero .boomlogo { height:38px; }
+  header.hero .cobrand .divider { width:1px; height:46px; background:rgba(255,255,255,.28); }
+  header.hero h1 { margin:10px 0 8px; font-size:34px; line-height:1.1; font-weight:800; letter-spacing:-0.5px; }
+  header.hero p { margin:6px 0 0; color:#c8c1d0; font-size:15px; font-weight:500; }
+  .badge { display:inline-block; margin-top:16px; background:var(--purple); color:#fff;
+    font-weight:700; font-size:13px; padding:7px 16px; border-radius:999px; }
+  .scanrow { display:flex; align-items:center; justify-content:center; gap:16px; margin:20px auto 0; max-width:430px;
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:12px 16px; }
+  .scanrow img { width:90px; height:90px; border-radius:8px; background:#fff; padding:5px; flex:none; }
+  .scanrow .st { text-align:left; font-size:14px; color:#d7d2dd; line-height:1.4; }
+  .scanrow .st strong { color:#fff; }
+  section { background:var(--almost); border:1px solid var(--line); border-radius:18px; padding:24px 22px; margin-top:18px; }
+  section.boom { background:var(--dark); color:var(--almost); border:none; }
+  h2 { font-size:21px; margin:0 0 4px; font-weight:800; letter-spacing:-0.3px; }
+  h2 .em { color:var(--purple); }
+  .boom h2 .em { color:var(--lpurple); }
+  .sub { color:var(--grey); font-size:14px; margin:0 0 14px; font-weight:500; }
+  .boom .sub { color:#b8b0c2; }
+  ul { margin:10px 0 0; padding-left:20px; }
+  li { margin:6px 0; }
+  strong { font-weight:700; }
+  .quick { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:18px; }
+  .qcard { display:block; text-decoration:none; color:var(--dark); background:var(--almost);
+    border:1px solid var(--line); border-radius:14px; padding:18px 16px; text-align:center; transition:.15s; }
+  .qcard:hover { border-color:var(--purple); transform:translateY(-2px); }
+  .qcard .ico { font-size:24px; }
+  .qcard .t { font-weight:800; margin-top:6px; font-size:15px; }
+  .qcard .d { color:var(--grey); font-size:13px; margin-top:2px; }
+  .btn { display:inline-block; background:var(--purple); color:#fff !important; text-decoration:none;
+    font-weight:700; padding:12px 20px; border-radius:11px; font-size:16px; margin-top:6px; }
+  .btn.ghost { background:transparent; color:var(--purple) !important; border:1.5px solid var(--purple); }
+  .btn.cream { background:var(--almost); color:var(--dark) !important; }
+  .btn-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+  .wordmark { font-weight:800; font-size:15px; letter-spacing:0.2px; }
+  .wordmark .by { font-weight:500; font-size:12px; opacity:.7; }
+  .qr { display:flex; gap:18px; align-items:center; flex-wrap:wrap; margin-top:16px; }
+  .qr img { width:118px; height:118px; border-radius:10px; background:#fff; padding:6px; }
+  .qr .x { flex:1; min-width:200px; }
+  .projnote { font-size:12px; color:#a79fb3; margin:6px 0 0; }
+  .free { background:var(--mint); border-radius:12px; padding:14px 16px; margin-top:14px; color:var(--dark); }
+  .free h3 { margin:0 0 4px; font-size:15px; font-weight:800; }
+  .free p { margin:0; font-size:14px; }
+  .picker { margin-top:14px; }
+  .picker .row { padding:10px 0; border-top:1px solid var(--lined); }
+  .picker .row:first-child { border-top:none; }
+  .picker .ct { font-weight:700; font-size:15px; }
+  .picker .cd { color:#b8b0c2; font-size:13.5px; }
+  .vsrow { display:grid; grid-template-columns:1fr; gap:12px; margin-top:10px; }
+  @media(min-width:560px) { .vsrow { grid-template-columns:1fr 1fr; } }
+  .vscol { border:1px solid var(--line); border-radius:12px; padding:14px 16px; background:var(--cream); }
+  .vscol .h { font-weight:800; font-size:14px; }
+  .vscol ul { margin:8px 0 0; padding-left:18px; }
+  .vscol li { font-size:13.5px; color:var(--grey); margin:5px 0; }
+  .compare { display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px; }
+  @media(min-width:560px) { .compare { grid-template-columns:1fr 1fr 1fr; } }
+  .compare .c { border:1px solid var(--line); border-radius:12px; padding:14px 16px; background:var(--cream); }
+  .compare .c .ct { font-weight:800; font-size:14.5px; }
+  .compare .c .cd { color:var(--grey); font-size:13px; margin-top:4px; }
+  .compare .c .cu { color:var(--purple); font-size:12.5px; font-weight:700; margin-top:7px; }
+  .weeks { display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px; }
+  @media(min-width:560px) { .weeks { grid-template-columns:1fr 1fr; } }
+  .week { border:1px solid var(--line); border-radius:14px; padding:14px 16px; background:var(--cream); position:relative; }
+  .week.now { border-color:var(--purple); box-shadow:0 0 0 2px rgba(103,58,255,.18); }
+  .week .dt { font-size:12px; font-weight:800; color:var(--purple); text-transform:uppercase; letter-spacing:.5px; }
+  .week .wt { font-weight:700; margin:3px 0 0; font-size:15.5px; }
+  .week .tag { position:absolute; top:12px; right:12px; background:var(--orange); color:#fff;
+    font-size:11px; font-weight:800; padding:3px 9px; border-radius:999px; }
+  .skillcard { border:1px solid var(--line); border-radius:14px; padding:16px; margin-top:14px; background:var(--cream); }
+  .skillcard .meta { display:flex; align-items:center; gap:8px; }
+  .pill { display:inline-block; white-space:nowrap; background:var(--purple); color:#fff; font-size:11px; font-weight:800;
+    padding:3px 10px; border-radius:999px; }
+  .promptbox { background:var(--dark); color:#e8e4ef; border-radius:10px; padding:14px 16px; font-size:12.5px;
+    line-height:1.5; white-space:pre-wrap; word-break:break-word; margin:10px 0 0;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; max-height:220px; overflow-y:auto; }
+  .copybtn { border:none; cursor:pointer; font-size:14px; padding:9px 18px; margin-top:10px;
+    font-family:inherit; }
+  footer { text-align:center; color:var(--grey); font-size:13px; margin-top:28px; }
+  footer a { color:var(--purple); text-decoration:none; font-weight:600; }
+  .note { font-size:12.5px; color:var(--grey); margin-top:10px; }
+  a { color:var(--purple); }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="cobrand">
+    <img class="witlogo" src="https://jaikharbanda.github.io/wit-claude/wit-logo.png" alt="Women in Tech UK">
+    <span class="divider"></span>
+    <img class="boomlogo" src="https://jaikharbanda.github.io/wit-claude/boom-white.svg" alt="Boom Training by Turing College">
+  </div>
+  <h1>The three files: a step-by-step guide</h1>
+  <p>What to do with each file in your ABOUT ME folder: create it, use it, keep it sharp.</p>
+  <div class="badge">Claude AI Working Group &middot; Week 3 companion</div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2>Before the files: <span class="em">two one-off steps</span></h2>
+    <p class="sub">Do these once. Everything below assumes they're done.</p>
+    <strong style="display:block;">Step 0 &middot; The folder</strong>
+    <p style="font-size:14px; margin:6px 0 0;">Create a folder called <strong>Claude Cowork</strong> anywhere on your computer, with three subfolders inside: <strong>ABOUT ME</strong>, <strong>OUTPUTS</strong>, <strong>TEMPLATES</strong>. In the Claude desktop app, open the Cowork tab and point it at the Claude Cowork folder. <em>Free plan:</em> create a Project in browser Claude called "My Claude workspace" instead; your files will live in the Project's instructions.</p>
+    <strong style="display:block; margin-top:14px;">Step 0.5 &middot; Global instructions (the glue)</strong>
+    <p style="font-size:14px; margin:6px 0 0;">Go to <strong>Settings &rarr; Cowork &rarr; Edit Global Instructions</strong> and paste Prompt 1 from the <a href="index.html#prompts">hub</a>. This is what makes everything automatic: it tells Claude to read every file in ABOUT ME before every task, and to leave OUTPUTS and TEMPLATES alone unless you point at them. Without this step the files just sit there.</p>
+  </section>
+
+  <section>
+    <h2>File 1: <span class="em">about-me.md</span></h2>
+    <p class="sub">Who you are, how you work, what good looks like, what you hate. Claude's briefing on you.</p>
+
+    <strong style="display:block;">Create it (10&ndash;20 minutes, once)</strong>
+    <ul style="font-size:14px;">
+      <li>Download the <strong>About-me interview</strong> skill from the <a href="index.html#skills">hub</a> (.skill for Cowork, .md for browser).</li>
+      <li>In Cowork: save the skill, spin off a new task and say <strong>"run the about-me interview"</strong>. Browser: paste the .md into a chat.</li>
+      <li>Answer the ~20 questions like you'd talk to a colleague. Vague in = vague out. Dictate if you can; you speak faster than you type.</li>
+      <li>Claude compiles a condensed about-me.md (under 2,000 tokens) and saves it in ABOUT ME/. Browser: copy the output into your Project's instructions.</li>
+    </ul>
+
+    <strong style="display:block; margin-top:14px;">Use it</strong>
+    <p style="font-size:14px; margin:6px 0 0;">Nothing to do: with global instructions in place, Claude reads it before every task, automatically. You never attach it or mention it. Every draft, plan and answer starts from who you actually are instead of a generic user.</p>
+
+    <strong style="display:block; margin-top:14px;">Test it</strong>
+    <p style="font-size:14px; margin:6px 0 0;">Run the A/B test (Prompt 5 on the hub): same prompt once in plain browser Claude with no Project, once in a fresh Cowork task. The "before" must run outside Cowork; inside it, Claude reads your files and there is no before.</p>
+
+    <strong style="display:block; margin-top:14px;">Maintain it</strong>
+    <p style="font-size:14px; margin:6px 0 0;">If it grows past ~2,000 tokens (roughly 1,500 words), run Prompt 2 ("trim a bloated about-me file"). Rerun the interview every few months, or just tell Claude "update my about-me.md, here's what changed."</p>
+  </section>
+
+  <section>
+    <h2>File 2: <span class="em">anti-ai-writing-style.md</span></h2>
+    <p class="sub">The rules that stop Claude writing like a robot: banned words, banned patterns, no em dashes.</p>
+
+    <strong style="display:block;">Create it (5 minutes)</strong>
+    <ul style="font-size:14px;">
+      <li>Download the <strong>Anti-AI writing style</strong> skill (Week 1's giveaway) from the <a href="index.html#skills">hub</a>.</li>
+      <li>Put the .md file in ABOUT ME/. Browser: paste it into your Project's instructions below your about-me.</li>
+      <li><strong>Make it yours:</strong> add 2&ndash;3 words that make you cringe to the banned list, delete any rule you don't care about. A hand-me-down file is good; your file is better.</li>
+    </ul>
+
+    <strong style="display:block; margin-top:14px;">Use it</strong>
+    <p style="font-size:14px; margin:6px 0 0;">Automatic, same as about-me. Claude writes, then audits its own draft against your rules before you see it. To clean up something written elsewhere, paste it in and say <strong>"audit this against my anti-ai-writing-style file."</strong></p>
+
+    <strong style="display:block; margin-top:14px;">Maintain it</strong>
+    <p style="font-size:14px; margin:6px 0 0;">It's a living file. Every few months, reread your last handful of AI drafts; add new words or patterns that now feel robotic, delete ones that no longer trip you up.</p>
+  </section>
+
+  <section>
+    <h2>File 3: <span class="em">my-company.md</span></h2>
+    <p class="sub">Goals, strategy and decisions only. Your north star, not your Tuesday deadline.</p>
+
+    <strong style="display:block;">Create it (5&ndash;10 minutes)</strong>
+    <ul style="font-size:14px;">
+      <li>Spin off a new task and say <strong>"run the about-me interview, Part 2"</strong> (same Week 3 skill).</li>
+      <li>Answer 6&ndash;8 questions: this year's targets with numbers, where your energy goes this quarter, what you're actively saying no to.</li>
+      <li>Claude writes my-company.md (under 1,000 tokens) into ABOUT ME/.</li>
+    </ul>
+
+    <strong style="display:block; margin-top:14px;">Use it</strong>
+    <p style="font-size:14px; margin:6px 0 0;">Automatic. The difference shows up in judgement calls: plans get prioritised against your actual goals, drafts point at what you're building this quarter, and Claude stops suggesting things you're saying no to. Ask it "what should I focus on this week?" and compare the answer with and without the file if you want proof.</p>
+
+    <strong style="display:block; margin-top:14px;">Maintain it</strong>
+    <p style="font-size:14px; margin:6px 0 0;">Revisit quarterly, or when strategy genuinely shifts. If you're editing it weekly, it has too much detail in it: day-to-day belongs in the task, not the file.</p>
+  </section>
+
+  <section>
+    <h2>The other two folders <span class="em">in 30 seconds</span></h2>
+    <p style="font-size:14px; margin:6px 0 0;"><strong>OUTPUTS/</strong> needs no setup: your global instructions already tell Claude to save deliverables there, one subfolder per project. Claude never reads it uninvited, so it can grow forever without costing you tokens.</p>
+    <p style="font-size:14px; margin:8px 0 0;"><strong>TEMPLATES/</strong> fills itself as you work: when Claude makes something you like, say <strong>"save this as a template in TEMPLATES/"</strong> (Prompt 3). Next time: "use the template in TEMPLATES/report."</p>
+  </section>
+
+  <section>
+    <h2>Stuck?</h2>
+    <p class="sub">All the copy-paste prompts, skill downloads and course links live on the <a href="index.html">main hub</a>. Bring questions on Saturday 11 July: Connect, Build &amp; Stay Safe, same time, same room.</p>
+  </section>
+
+  <footer>
+    <span class="note"><a href="index.html">&larr; Back to the hub</a> &middot; Women in Tech UK &times; Boom Training by Turing College</span>
+  </footer>
+
+</div>
+</body>
+</html>
