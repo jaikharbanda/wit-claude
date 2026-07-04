@@ -105,7 +105,7 @@
     font-size:11px; font-weight:800; padding:3px 9px; border-radius:999px; }
   .skillcard { border:1px solid var(--line); border-radius:14px; padding:16px; margin-top:14px; background:var(--cream); }
   .skillcard .meta { display:flex; align-items:center; gap:8px; }
-  .pill { display:inline-block; background:var(--purple); color:#fff; font-size:11px; font-weight:800;
+  .pill { display:inline-block; white-space:nowrap; background:var(--purple); color:#fff; font-size:11px; font-weight:800;
     padding:3px 10px; border-radius:999px; }
   .promptbox { background:var(--dark); color:#e8e4ef; border-radius:10px; padding:14px 16px; font-size:12.5px;
     line-height:1.5; white-space:pre-wrap; word-break:break-word; margin:10px 0 0;
@@ -176,7 +176,8 @@
     <p class="sub">Everything we type in the session, ready to copy. The full interview prompt is in this week's free skill below.</p>
 
     <div class="skillcard">
-      <div class="meta"><span class="pill">Prompt 1</span> <strong>Global instructions</strong> <span style="font-size:12px;color:var(--grey);">&middot; Settings &rarr; Cowork &rarr; Edit Global Instructions</span></div>
+      <div class="meta"><span class="pill">Prompt 1</span> <strong>Global instructions</strong></div>
+      <p style="margin:6px 0 0; font-size:12.5px; color:var(--grey);">Paste into: Settings &rarr; Cowork &rarr; Edit Global Instructions</p>
       <pre class="promptbox" id="p1">I usually start my Cowork session by pointing you to my Cowork folder.
 
 Before any and every single task, you must read every file in ABOUT ME/:
@@ -207,7 +208,8 @@ Ask me questions on how to trim effectively until we have the perfect document.<
     </div>
 
     <div class="skillcard">
-      <div class="meta"><span class="pill">Prompt 4</span> <strong>Carry a long session into a fresh one</strong> <span style="font-size:12px;color:var(--grey);">&middot; in Cowork: spin off a new task, then paste this summary in</span></div>
+      <div class="meta"><span class="pill">Prompt 4</span> <strong>Carry a long session into a fresh one</strong></div>
+      <p style="margin:6px 0 0; font-size:12.5px; color:var(--grey);">In Cowork: spin off a new task, then paste this summary in as your first message.</p>
       <pre class="promptbox" id="p4">Summarize everything we've done and decided in this session in a compact brief I can paste into a new session. Include the current state of the work, open questions, and next steps.</pre>
       <button class="btn copybtn" data-target="p4">Copy</button>
     </div>
