@@ -112,6 +112,19 @@
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; max-height:220px; overflow-y:auto; }
   .copybtn { border:none; cursor:pointer; font-size:14px; padding:9px 18px; margin-top:10px;
     font-family:inherit; }
+  .tabbar { display:flex; gap:8px; margin-top:22px; flex-wrap:wrap; }
+  .tabbtn { flex:1; min-width:100px; border:1.5px solid var(--line); background:var(--almost); color:var(--dark);
+    font-family:inherit; font-weight:700; font-size:14px; padding:11px 10px; border-radius:12px; cursor:pointer; }
+  .tabbtn.active { background:var(--purple); border-color:var(--purple); color:#fff; }
+  .tabpane { display:none; }
+  .tabpane.active { display:block; }
+  .videorow { display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px; }
+  @media(min-width:560px) { .videorow { grid-template-columns:1fr 1fr; } }
+  .videocard { display:block; text-decoration:none; border:1px solid var(--line); border-radius:14px;
+    padding:16px; background:var(--cream); color:var(--dark); transition:.15s; }
+  .videocard:hover { border-color:var(--purple); transform:translateY(-2px); }
+  .videocard .vt { font-weight:800; font-size:15px; }
+  .videocard .vd { color:var(--grey); font-size:13px; margin-top:3px; }
   footer { text-align:center; color:var(--grey); font-size:13px; margin-top:28px; }
   footer a { color:var(--purple); text-decoration:none; font-weight:600; }
   .note { font-size:12.5px; color:var(--grey); margin-top:10px; }
@@ -127,7 +140,7 @@
   </div>
   <h1>Claude AI Working Group</h1>
   <p>Saturdays &middot; 2:00&ndash;4:30pm &middot; UCL Chadwick Building, London</p>
-  <div class="badge">Week 3 &middot; Sat 4 July</div>
+  <div class="badge">Week 4 &middot; Sat 11 July &middot; The finale</div>
   <div class="scanrow">
     <img src="data:image/png;base64,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" alt="QR code to open this page on your phone">
     <div class="st">Viewing this on the screen?<br><strong>Scan to open it on your phone.</strong><br><span style="font-size:12.5px;color:#a79fb3;">jaikharbanda.github.io/wit-claude</span></div>
@@ -148,10 +161,57 @@
     </a>
   </div>
 
+
+  <div class="tabbar">
+    <button class="tabbtn" data-tab="wk1">Week 1</button>
+    <button class="tabbtn" data-tab="wk3">Week 3</button>
+    <button class="tabbtn active" data-tab="wk4">Week 4 &middot; This Saturday</button>
+  </div>
+
+  <div class="tabpane active" id="tab-wk4">
   <section>
-    <h2>This Saturday: <span class="em">Set Up Claude Cowork Like a Pro</span></h2>
-    <p class="sub">2:00&ndash;4:30pm &middot; hands-on session. Bring a laptop: you'll build your own setup in the room.</p>
-    <strong>What we'll cover</strong>
+    <h2>This Saturday: <span class="em">Show, Tell &amp; Build</span></h2>
+    <p class="sub">2:00&ndash;4:30pm &middot; the finale. Bring a laptop <strong>and something to show</strong>.</p>
+    <strong>What we'll do</strong>
+    <ul>
+      <li><strong>Show &amp; tell (first half):</strong> 5 minutes each on what you built with Cowork. Three questions: What did I ask for? What did I get? What surprised me?</li>
+      <li><strong>The bridge:</strong> if the output is a <em>document</em>, Cowork. If the output is a <em>thing that runs</em>, Claude Code.</li>
+      <li><strong>Claude Code, demystified:</strong> same Claude, different room. It asks before it acts, and yes, it's for people who will never code.</li>
+      <li><strong>Live build:</strong> one file becomes a website, then you build your own.</li>
+      <li><strong>Stay safe + where next:</strong> personal AI at work in three lines, and free courses to keep going.</li>
+    </ul>
+    <p class="note"><strong>Watching, not showing?</strong> Your job: leave with one steal-able idea. <strong>On the free plan?</strong> Pair up for the build: navigator + driver, swap halfway.</p>
+  </section>
+
+  <section>
+    <h2>Saturday's <span class="em">build prompt</span></h2>
+    <p class="sub">The one we'll run live, ready to copy. Point Claude Code at your Claude Cowork folder first.</p>
+    <div class="skillcard">
+      <div class="meta"><span class="pill">Build</span> <strong>One file becomes a website</strong></div>
+      <p style="margin:6px 0 0; font-size:12.5px; color:var(--grey);">In the desktop app: open the Code tab (next to Cowork), point it at your folder, paste this.</p>
+      <pre class="promptbox" id="p6">Read ABOUT ME/about-me.md and build me a one-page personal website: clean, mobile-friendly, my name big at the top, sections for who I am and what I do, and a contact button. Ask me questions first if anything is unclear.</pre>
+      <button class="btn copybtn" data-target="p6">Copy</button>
+    </div>
+    <p class="note"><strong>Keep learning after Saturday:</strong> <a href="https://anthropic.skilljar.com/introduction-to-claude-cowork" target="_blank" rel="noopener">Introduction to Cowork</a> and <a href="https://anthropic.skilljar.com/claude-code-in-action" target="_blank" rel="noopener">Claude Code in Action</a> (free Anthropic Academy courses, with certificates) &middot; <a href="https://claude101.com" target="_blank" rel="noopener">claude101.com</a> Levels 1&ndash;4.</p>
+  </section>
+  </div>
+
+  <div class="tabpane" id="tab-wk3">
+  <section>
+    <h2>Week 3: <span class="em">Set Up Claude Cowork Like a Pro</span></h2>
+    <p class="sub">Sat 4 July &middot; hands-on session. Everything below is what we built in the room.</p>
+    <strong style="display:block; margin-bottom:6px;">Watch the lectures</strong>
+    <div class="videorow">
+      <a class="videocard" href="https://youtu.be/l6JTaHgDKk0" target="_blank" rel="noopener">
+        <div class="vt">&#9654;&#65039; Part 1 &middot; with Jai</div>
+        <div class="vd">Cowork, the folder setup, and the three files</div>
+      </a>
+      <a class="videocard" href="https://youtu.be/wesWhFRMOBA" target="_blank" rel="noopener">
+        <div class="vt">&#9654;&#65039; Part 2 &middot; with Folahan</div>
+        <div class="vd">The session continues: hands-on walkthrough</div>
+      </a>
+    </div>
+    <strong style="display:block; margin-top:18px;">What we covered</strong>
     <ul>
       <li>Claude Cowork: what it is, and the folder setup that makes it work (ABOUT ME / OUTPUTS / TEMPLATES)</li>
       <li>Your about-me file: Claude interviews <em>you</em>, then writes it</li>
@@ -195,7 +255,7 @@
   </section>
 
   <section id="prompts">
-    <h2>This Saturday's <span class="em">prompts</span></h2>
+    <h2>Week 3's <span class="em">prompts</span></h2>
     <p class="sub">Everything we type in the session, ready to copy. The full interview prompt is in this week's free skill below.</p>
 
     <div class="skillcard">
@@ -245,6 +305,23 @@ Ask me questions on how to trim effectively until we have the perfect document.<
     </div>
   </section>
 
+  </div>
+
+  <div class="tabpane" id="tab-wk1">
+  <section>
+    <h2>Week 1: <span class="em">Your First Hour with Claude</span></h2>
+    <p class="sub">Sat 20 June &middot; watch, discuss, and try together.</p>
+    <strong>What we covered</strong>
+    <ul>
+      <li>What Claude is, and how it differs from ChatGPT</li>
+      <li>How to prompt: just tell Claude to ask <em>you</em> questions first</li>
+      <li>What Claude Skills are, and why they save you time</li>
+      <li>Browser vs Desktop (Cowork) vs Claude Code, and which to use when</li>
+      <li>Connecting Claude to your apps</li>
+    </ul>
+    <p class="note"><strong>Three things to remember:</strong> let Claude interview you before it answers &middot; Skills save repeat work &middot; pick the right Claude for the job.</p>
+  </section>
+
   <section>
     <h2>Quick comparisons</h2>
     <p class="sub">The two things people always ask in week 1.</p>
@@ -290,6 +367,8 @@ Ask me questions on how to trim effectively until we have the perfect document.<
       </div>
     </div>
   </section>
+
+  </div>
 
   <section class="boom">
     <img src="https://jaikharbanda.github.io/wit-claude/boom-white.svg" alt="Boom Training by Turing College" style="height:42px;width:auto;margin-bottom:16px;display:block;">
@@ -353,10 +432,10 @@ Ask me questions on how to trim effectively until we have the perfect document.<
         <div class="dt">Sat 20 Jun</div><div class="wt">Your First Hour with Claude</div></div>
       <div class="week">
         <div class="dt">Sat 27 Jun</div><div class="wt">Building Your Claude Workspace <span style="font-weight:500;color:var(--grey);font-size:13px;">(folded into Week 3)</span></div></div>
-      <div class="week now"><span class="tag">This week</span>
-        <div class="dt">Sat 4 Jul</div><div class="wt">Set Up Claude Cowork Like a Pro</div></div>
       <div class="week">
-        <div class="dt">Sat 11 Jul</div><div class="wt">Connect, Build &amp; Stay Safe</div></div>
+        <div class="dt">Sat 4 Jul</div><div class="wt">Set Up Claude Cowork Like a Pro</div></div>
+      <div class="week now"><span class="tag">This week</span>
+        <div class="dt">Sat 11 Jul</div><div class="wt">Show, Tell &amp; Build <span style="font-weight:500;color:var(--grey);font-size:13px;">(the finale)</span></div></div>
     </div>
     <div class="btn-row">
       <a class="btn cream" style="border:1px solid var(--line);" href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSDQpWRVJTSU9OOjIuMA0KUFJPRElEOi0vL1dJVCBVSy8vQ2xhdWRlIEFJIFdvcmtpbmcgR3JvdXAvL0VODQpDQUxTQ0FMRTpHUkVHT1JJQU4NCk1FVEhPRDpQVUJMSVNIDQpCRUdJTjpWRVZFTlQNClVJRDp3aXQtY2xhdWRlLXdrMUBqYWlraGFyYmFuZGEuZ2l0aHViLmlvDQpEVFNUQU1QOjIwMjYwNjE5VDAwMDAwMFoNCkRUU1RBUlQ6MjAyNjA2MjBUMTMwMDAwWg0KRFRFTkQ6MjAyNjA2MjBUMTUzMDAwWg0KU1VNTUFSWTpXSVQgVUsgLSBDbGF1ZGUgQUkgV29ya2luZyBHcm91cCAtIFdlZWsgMTogWW91ciBGaXJzdCBIb3VyIHdpdGggQ2xhdWRlDQpMT0NBVElPTjpVQ0wgQ2hhZHdpY2sgQnVpbGRpbmcsIExvbmRvbg0KREVTQ1JJUFRJT046V29tZW4gaW4gVGVjaCBVSyBDbGF1ZGUgQUkgV29ya2luZyBHcm91cC4gSHViOiBodHRwczovL2phaWtoYXJiYW5kYS5naXRodWIuaW8vd2l0LWNsYXVkZS8NCkVORDpWRVZFTlQNCkJFR0lOOlZFVkVOVA0KVUlEOndpdC1jbGF1ZGUtd2syQGphaWtoYXJiYW5kYS5naXRodWIuaW8NCkRUU1RBTVA6MjAyNjA2MTlUMDAwMDAwWg0KRFRTVEFSVDoyMDI2MDYyN1QxMzAwMDBaDQpEVEVORDoyMDI2MDYyN1QxNTMwMDBaDQpTVU1NQVJZOldJVCBVSyAtIENsYXVkZSBBSSBXb3JraW5nIEdyb3VwIC0gV2VlayAyOiBCdWlsZGluZyBZb3VyIENsYXVkZSBXb3Jrc3BhY2UNCkxPQ0FUSU9OOlVDTCBDaGFkd2ljayBCdWlsZGluZywgTG9uZG9uDQpERVNDUklQVElPTjpXb21lbiBpbiBUZWNoIFVLIENsYXVkZSBBSSBXb3JraW5nIEdyb3VwLiBIdWI6IGh0dHBzOi8vamFpa2hhcmJhbmRhLmdpdGh1Yi5pby93aXQtY2xhdWRlLw0KRU5EOlZFVkVOVA0KQkVHSU46VkVWRU5UDQpVSUQ6d2l0LWNsYXVkZS13azNAamFpa2hhcmJhbmRhLmdpdGh1Yi5pbw0KRFRTVEFNUDoyMDI2MDYxOVQwMDAwMDBaDQpEVFNUQVJUOjIwMjYwNzA0VDEzMDAwMFoNCkRURU5EOjIwMjYwNzA0VDE1MzAwMFoNClNVTU1BUlk6V0lUIFVLIC0gQ2xhdWRlIEFJIFdvcmtpbmcgR3JvdXAgLSBXZWVrIDM6IFNldCBVcCBDbGF1ZGUgQ293b3JrIExpa2UgYSBQcm8NCkxPQ0FUSU9OOlVDTCBDaGFkd2ljayBCdWlsZGluZywgTG9uZG9uDQpERVNDUklQVElPTjpXb21lbiBpbiBUZWNoIFVLIENsYXVkZSBBSSBXb3JraW5nIEdyb3VwLiBIdWI6IGh0dHBzOi8vamFpa2hhcmJhbmRhLmdpdGh1Yi5pby93aXQtY2xhdWRlLw0KRU5EOlZFVkVOVA0KQkVHSU46VkVWRU5UDQpVSUQ6d2l0LWNsYXVkZS13azRAamFpa2hhcmJhbmRhLmdpdGh1Yi5pbw0KRFRTVEFNUDoyMDI2MDYxOVQwMDAwMDBaDQpEVFNUQVJUOjIwMjYwNzExVDEzMDAwMFoNCkRURU5EOjIwMjYwNzExVDE1MzAwMFoNClNVTU1BUlk6V0lUIFVLIC0gQ2xhdWRlIEFJIFdvcmtpbmcgR3JvdXAgLSBXZWVrIDQ6IENvbm5lY3QsIEJ1aWxkICYgU3RheSBTYWZlDQpMT0NBVElPTjpVQ0wgQ2hhZHdpY2sgQnVpbGRpbmcsIExvbmRvbg0KREVTQ1JJUFRJT046V29tZW4gaW4gVGVjaCBVSyBDbGF1ZGUgQUkgV29ya2luZyBHcm91cC4gSHViOiBodHRwczovL2phaWtoYXJiYW5kYS5naXRodWIuaW8vd2l0LWNsYXVkZS8NCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVI=" download="wit-claude-working-group.ics">&#128197; Add all sessions to your calendar</a>
@@ -366,17 +445,25 @@ Ask me questions on how to trim effectively until we have the perfect document.<
 
   <section>
     <h2>What's next</h2>
-    <p class="sub">Final session: <strong>Saturday 11 July</strong> (Connect, Build &amp; Stay Safe). Same time, UCL Chadwick Building.</p>
-    <p class="note">This week's homework: run the A/B test (Prompt 5), set up my-company.md if you haven't, and bring your before/after pair to show next Saturday.</p>
+    <p class="sub"><strong>Saturday 11 July is the finale.</strong> Bring your laptop and something to show: your before/after pair, your dashboard, your files, anything you built with Cowork. The series pauses for summer and returns in September.</p>
+    <p class="note">This page stays up all summer: prompts, skills, videos and course links included.</p>
   </section>
 
   <footer>
     <span class="note">Thanks to our venue partner UCL.</span><br>
-    <span class="note">Presenting? <a href="https://docs.google.com/presentation/d/1xQ7N4o72KaSrAGFzjX54UjIw8l0ykKKi3M7d8wIXHO8/present" target="_blank" rel="noopener">Open the slides</a> &middot; <a href="wit-week3-deck.pdf" target="_blank" rel="noopener">Deck as PDF</a></span>
+    <span class="note">Presenting? Week 4: <a href="https://docs.google.com/presentation/d/1llvAwsEgnfo6yya5SMahxdIRPOzcrS4_KUfjO9xBvno/present" target="_blank" rel="noopener">slides</a> &middot; <a href="wit-week4-deck.pdf" target="_blank" rel="noopener">PDF</a> &nbsp;|&nbsp; Week 3: <a href="https://docs.google.com/presentation/d/1xQ7N4o72KaSrAGFzjX54UjIw8l0ykKKi3M7d8wIXHO8/present" target="_blank" rel="noopener">slides</a> &middot; <a href="wit-week3-deck.pdf" target="_blank" rel="noopener">PDF</a></span>
   </footer>
 
 </div>
 <script>
+  document.querySelectorAll('.tabbtn').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.tabbtn').forEach(function(x){ x.classList.remove('active'); });
+      document.querySelectorAll('.tabpane').forEach(function(x){ x.classList.remove('active'); });
+      b.classList.add('active');
+      document.getElementById('tab-' + b.dataset.tab).classList.add('active');
+    });
+  });
   document.querySelectorAll('.copybtn').forEach(function(btn){
     btn.addEventListener('click', function(){
       var text = document.getElementById(btn.dataset.target).innerText;
