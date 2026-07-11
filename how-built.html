@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How this workshop built itself · WIT UK Claude Working Group</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="https://jaikharbanda.github.io/wit-claude/favicon.png">
+<style>
+  @font-face { font-family:'Noi Grotesk'; src:url('https://jaikharbanda.github.io/wit-claude/NoiGrotesk-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
+  @font-face { font-family:'Noi Grotesk'; src:url('https://jaikharbanda.github.io/wit-claude/NoiGrotesk-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
+  @font-face { font-family:'Noi Grotesk'; src:url('https://jaikharbanda.github.io/wit-claude/NoiGrotesk-Semibold.woff2') format('woff2'); font-weight:600 800; font-display:swap; }
+  :root {
+    --dark:#25212C; --cream:#F5F0D6; --almost:#FFFEF5; --mint:#DEEDE7;
+    --purple:#673AFF; --lpurple:#808CF4; --orange:#E9513C; --grey:#8d8496;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-snap-type:y proximity; }
+  body { margin:0; background:var(--dark); color:var(--almost);
+    font-family:'Noi Grotesk',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased; }
+  section { min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+    max-width:900px; margin:0 auto; padding:56px 26px; scroll-snap-align:start; }
+  .act { color:var(--lpurple); font-weight:800; font-size:15px; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; }
+  h1 { font-size:clamp(34px,6vw,58px); line-height:1.06; margin:8px 0 14px; font-weight:800; letter-spacing:-1px; }
+  h2 { font-size:clamp(26px,4.4vw,40px); line-height:1.1; margin:0 0 16px; font-weight:800; letter-spacing:-0.5px; }
+  p.lead { color:#c8c1d0; font-size:18px; max-width:640px; }
+  .chat { background:#1b1822; border:1px solid #3a3543; border-radius:16px; padding:20px; margin-top:18px; }
+  .bubble { border-radius:12px; padding:14px 16px; font-size:14.5px; margin:10px 0; max-width:92%; }
+  .me { background:var(--purple); color:#fff; margin-left:auto; }
+  .claude { background:#2e2937; color:#e8e4ef; }
+  .tag { display:inline-block; background:rgba(255,255,255,.08); border:1px solid #3a3543; color:#c8c1d0;
+    font-size:12px; padding:3px 10px; border-radius:999px; margin:3px 4px 0 0; }
+  .grid { display:grid; grid-template-columns:1fr; gap:12px; margin-top:18px; }
+  @media(min-width:640px){ .grid.g2 { grid-template-columns:1fr 1fr; } .grid.g3 { grid-template-columns:1fr 1fr 1fr; } }
+  .card { background:var(--almost); color:var(--dark); border-radius:14px; padding:18px; }
+  .card.mint { background:var(--mint); } .card.cream { background:var(--cream); }
+  .card h3 { margin:0 0 6px; font-size:16px; } .card p { margin:0; font-size:13.5px; color:#5E5A66; }
+  .card .n { font-size:26px; font-weight:800; color:var(--purple); }
+  a.card { display:block; text-decoration:none; transition:.15s; }
+  a.card:hover { transform:translateY(-2px); }
+  .code { background:#1b1822; border:1px solid #3a3543; border-radius:14px; padding:18px 20px; margin-top:18px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:14px; color:#e8e4ef; line-height:1.9; }
+  .code .c { color:var(--lpurple); font-weight:700; }
+  .punch { font-size:clamp(24px,4vw,36px); font-weight:800; line-height:1.2; letter-spacing:-0.5px; }
+  .punch .em { color:var(--lpurple); }
+  table { border-collapse:collapse; margin-top:18px; width:100%; max-width:560px; font-size:14px; }
+  td { padding:6px 12px 6px 0; border-bottom:1px solid #3a3543; color:#c8c1d0; }
+  td:first-child { color:var(--lpurple); font-weight:700; white-space:nowrap; }
+  .foot { color:var(--grey); font-size:13px; margin-top:26px; }
+  .kicker { margin-top:20px; font-size:17px; font-weight:700; color:var(--almost); }
+  .kicker span { color:var(--orange); }
+</style>
+</head>
+<body>
+
+<section>
+  <div class="act">The opener &middot; 8 minutes</div>
+  <h1>How this workshop<br>built itself</h1>
+  <p class="lead">Every deck, run sheet and web page in this series was made with Claude Cowork, by someone who is completely non-technical. Here's how, from nothing to everything you've seen.</p>
+  <p class="foot">Scroll &darr; &middot; five acts, three questions</p>
+</section>
+
+<section>
+  <div class="act">Act 1 &middot; What did I ask for?</div>
+  <h2>One brief. Real sources attached.</h2>
+  <div class="chat">
+    <div class="bubble me">Two weeks ago I did a session with Women in Tech on an intro to Claude. I'm doing session 3 tomorrow, 2:00&ndash;4:30. The organiser shared a guide for the curriculum. Help me plan the session, so we have enough material for the full 2.5 hours. When that's done we'll pull together all the assets.</div>
+    <div>
+      <span class="tag">&#128279; the session hub</span><span class="tag">&#128279; week 1 run sheet</span><span class="tag">&#128279; the Luma event</span><span class="tag">&#128279; the organiser's curriculum</span>
+    </div>
+    <div class="bubble claude">Before I plan: four questions.<br><br>1 &middot; Week 2 was missed. Merge it into week 3?<br>2 &middot; Hands-on with a free-plan fallback, or demo-led?<br>3 &middot; Which assets: deck, hub update, run sheet, demo pack?<br>4 &middot; The guide plugs a paid dictation tool. Include it?</div>
+  </div>
+  <p class="kicker">Claude's first move wasn't to build. <span>It interviewed me.</span> Week 1's habit, doing production work.</p>
+</section>
+
+<section>
+  <div class="act">Act 2 &middot; Plan before assets</div>
+  <h2>Nothing got built until the plan summed to 150 minutes.</h2>
+  <table>
+    <tr><td>2:00</td><td>Welcome &amp; where we are</td></tr>
+    <tr><td>2:10</td><td>Cowork &amp; the folder setup</td></tr>
+    <tr><td>2:35</td><td>File 1: about-me (hands-on)</td></tr>
+    <tr><td>3:00</td><td>File 2: anti-AI writing style</td></tr>
+    <tr><td>3:25</td><td>File 3 + global instructions</td></tr>
+    <tr><td>4:00</td><td>The 20-minute setup sprint</td></tr>
+    <tr><td>4:20</td><td>Wrap &middot; scripted close</td></tr>
+  </table>
+  <p class="kicker">We argued about minutes in chat, <span>then</span> made things. Never the other way round.</p>
+</section>
+
+<section>
+  <div class="act">Act 3 &middot; The rules, written once</div>
+  <h2>A skill: my standards, saved as a file.</h2>
+  <div class="code">
+    <span class="c"># boom-event-kit</span><br>
+    Google Slides, always. &nbsp;Brand is law.<br>
+    No em dashes, anywhere.<br>
+    A typed URL next to every QR (laptops can't scan).<br>
+    Every QR gets decode-verified in code before shipping.<br>
+    Time-boxes must sum. &nbsp;The close is scripted, never improvised.<br>
+    Nothing real on the projector.
+  </div>
+  <p class="kicker">A template teaches Claude a <span>structure</span>. A skill teaches it a <span>job</span>. Every week's kit now follows these rules without me repeating them.</p>
+</section>
+
+<section>
+  <div class="act">Act 4 &middot; What did I get?</div>
+  <h2>One plan, three formats, one afternoon.</h2>
+  <div class="grid g3">
+    <a class="card mint" href="https://docs.google.com/presentation/d/1llvAwsEgnfo6yya5SMahxdIRPOzcrS4_KUfjO9xBvno/present" target="_blank" rel="noopener"><h3>The deck</h3><p>Generated to brand, converted to Google Slides, speaker notes with fallbacks on every slide.</p></a>
+    <a class="card cream" href="https://app.notion.com/p/3998d5579ea381368401c805224476fa" target="_blank" rel="noopener"><h3>The run sheet</h3><p>Minute-by-minute stage notes in Notion: cheat sheet, demo pack, checklists.</p></a>
+    <a class="card mint" href="https://jaikharbanda.github.io/wit-claude/" target="_blank" rel="noopener"><h3>The hub</h3><p>The page in your pocket: prompts, skills, videos. Built and published by Claude Code.</p></a>
+  </div>
+  <p class="kicker">Including <span>this page</span>. I asked for it this morning.</p>
+</section>
+
+<section>
+  <div class="act">Act 5 &middot; What surprised me?</div>
+  <h2>Three things I didn't expect.</h2>
+  <div class="grid g3">
+    <div class="card"><div class="n">1</div><h3>It checks its own work</h3><p>A fresh pair of AI eyes reviewed every rendered slide and caught layout problems I'd stopped seeing.</p></div>
+    <div class="card"><div class="n">2</div><h3>It edits around me</h3><p>When I hand-tweaked slides, it worked around my changes instead of overwriting them.</p></div>
+    <div class="card"><div class="n">3</div><h3>Failure made it better</h3><p>The week the projector refused my laptop, we rebuilt the plan so any PC in the room needs exactly one URL. You're looking at it.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="act">The point</div>
+  <p class="punch">I went from completely non-technical to building all of this on my own.<br><br><span class="em">There is nothing here you can't do after today.</span></p>
+  <p class="foot">jaikharbanda.github.io/wit-claude &middot; Claude AI Working Group &middot; Women in Tech UK &times; Boom Training by Turing College</p>
+</section>
+
+</body>
+</html>
